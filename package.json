@@ -1,6 +1,6 @@
 {
-  "name": "slideviewer",
-  "version": "0.1.0",
+  "name": "lightslide",
+  "version": "0.0.1",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.8.5"
