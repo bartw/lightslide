@@ -1,0 +1,21 @@
+.urlForm {
+    height: 100%;
+    width: 100%;
+}
+
+.urlForm form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.urlForm input {
+    width: 50%;
+    font-size: 2rem;
+}
+
+.urlForm button {
+    font-size: 2rem;
+}

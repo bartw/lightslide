@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SlideShow from './SlideShow';
+import UrlForm from './UrlForm';
 import './App.css';
 
 export default class App extends Component {
@@ -25,15 +26,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         {
-          !this.state.showSlideShow &&
-          <div>
-            <input id="markdownUrl" type="url" value={this.state.url} placeholder="markdown url" onChange={this.handleChange} />
-            <button onClick={this.handleClick}>Start</button>
-          </div>
+          this.state.showSlideShow ?
+            <SlideShow url={this.state.url} onStop={this.stop} />
+            : <UrlForm onChangeUrl={this.handleChange} onStart={this.handleClick} />
         }
-        {this.state.showSlideShow && <SlideShow url={this.state.url} onStop={this.stop} />}
       </div>
     );
   }

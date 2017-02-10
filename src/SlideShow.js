@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import showdown from 'showdown';
-import './App.css';
+import './SlideShow.css';
 
 export default class SlideShow extends Component {
     constructor(props) {
@@ -50,11 +50,13 @@ export default class SlideShow extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.slides.length && <div dangerouslySetInnerHTML={this.createMarkup()} />}
-                <button onClick={this.previous}>Previous</button>
-                <button onClick={this.next}>Next</button>
-                <button onClick={this.props.onStop}>Stop</button>
+            <div className="slideShow">
+                {this.state.slides.length && <div className="content" dangerouslySetInnerHTML={this.createMarkup()} />}
+                <div className="buttonBar">
+                    <button onClick={this.previous}>Previous</button>
+                    <button onClick={this.next}>Next</button>
+                    <button onClick={this.props.onStop}>Stop</button>
+                </div>
             </div>
         );
     }
