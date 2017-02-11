@@ -13,3 +13,8 @@ export default class UrlForm extends Component {
         );
     }
 }
+
+UrlForm.propTypes = {
+    onChangeUrl: React.PropTypes.func.isRequired,
+    onStart: React.PropTypes.func.isRequired
+}

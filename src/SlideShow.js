@@ -61,3 +61,8 @@ export default class SlideShow extends Component {
         );
     }
 }
+
+SlideShow.propTypes = {
+    url: React.PropTypes.string.isRequired,
+    onStop: React.PropTypes.func.isRequired
+}
