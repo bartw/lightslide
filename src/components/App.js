@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SlideShowUrl from './SlideShowUrl';
+import SlideShowUrl from '../containers/SlideShowUrl';
 import UrlForm from './UrlForm';
 import './App.css';
 
@@ -7,20 +7,22 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = { showSlideShow: false, url: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.setUrl = this.setUrl.bind(this);
+    this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ url: event.target.value });
+  setUrl(e) {
+    this.setState({ url: e.target.value });
   }
 
-  handleClick() {
+  start(e) {
+    e.preventDefault();
     this.setState({ showSlideShow: true });
   }
 
-  stop() {
+  stop(e) {
+    e.preventDefault();
     this.setState({ showSlideShow: false });
   }
 
@@ -30,7 +32,7 @@ export default class App extends Component {
         {
           this.state.showSlideShow ?
             <SlideShowUrl url={this.state.url} onStop={this.stop} />
-            : <UrlForm onChangeUrl={this.handleChange} onStart={this.handleClick} />
+            : <UrlForm onChangeUrl={this.setUrl} onStart={this.start} />
         }
       </div>
     );
