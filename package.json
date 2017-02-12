@@ -10,7 +10,6 @@
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-redux": "^5.0.2",
     "showdown": "^1.6.4"
   },
   "scripts": {
