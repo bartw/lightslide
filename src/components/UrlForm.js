@@ -7,7 +7,7 @@ export default class UrlForm extends Component {
             <div className="urlForm">
                 <form>
                     <input type="url" value={this.props.url} placeholder="markdown url" onChange={this.props.onChangeUrl} />
-                    <button onClick={this.props.onStart}>Start</button>
+                    <button type="submit" onClick={this.props.onStart}>Start</button>
                 </form>
             </div>
         );

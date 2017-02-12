@@ -16,11 +16,12 @@ export default class App extends Component {
     this.setState({ url: event.target.value });
   }
 
-  start() {
+  start(e) {
+    e.preventDefault();
     this.setState({ showSlideShow: true });
   }
 
-  stop() {
+  stop(e) {
     this.setState({ showSlideShow: false });
   }
 
