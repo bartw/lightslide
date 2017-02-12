@@ -1,39 +1,46 @@
 import React, { Component } from 'react';
+import { extendObservable } from "mobx"
+import { observer } from "mobx-react"
 import SlideShowFromUrl from './SlideShowFromUrl';
 import UrlForm from './UrlForm';
 import './App.css';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showSlideShow: false, url: '' };
-    this.changeUrl = this.changeUrl.bind(this);
-    this.start = this.start.bind(this);
-    this.stop = this.stop.bind(this);
-  }
+class App extends Component {
+    constructor(props) {
+        super(props);
+        extendObservable(this, {
+            showSlideShow: false,
+            url: ''
+        });
+        this.changeUrl = this.changeUrl.bind(this);
+        this.start = this.start.bind(this);
+        this.stop = this.stop.bind(this);
+    }
 
-  changeUrl(event) {
-    this.setState({ url: event.target.value });
-  }
+    changeUrl(event) {
+        this.url = event.target.value;
+    }
 
-  start(e) {
-    e.preventDefault();
-    this.setState({ showSlideShow: true });
-  }
+    start(e) {
+        e.preventDefault();
+        this.showSlideShow = true;
+    }
 
-  stop(e) {
-    this.setState({ showSlideShow: false });
-  }
+    stop(e) {
+        this.showSlideShow = false;
+    }
 
-  render() {
-    return (
-      <div className="app">
-        {
-          this.state.showSlideShow ?
-            <SlideShowFromUrl url={this.state.url} onStop={this.stop} />
-            : <UrlForm onChangeUrl={this.changeUrl} onStart={this.start} />
-        }
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="app">
+                {
+                    this.showSlideShow ?
+                        <SlideShowFromUrl url={this.url} onStop={this.stop} />
+                        : <UrlForm onChangeUrl={this.changeUrl} onStart={this.start} />
+                }
+            </div>
+        );
+    }
 }
+
+export default observer(App);

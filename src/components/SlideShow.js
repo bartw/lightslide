@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
+import { extendObservable } from "mobx"
+import { observer } from "mobx-react"
 import Slide from './Slide';
 import ButtonBar from './ButtonBar';
 import './SlideShow.css';
 
-export default class SlideShow extends Component {
+class SlideShow extends Component {
     constructor(props) {
         super(props);
-        this.state = { current: 0 };
+        extendObservable(this, {
+            current: 0
+        });
         this.previous = this.previous.bind(this);
         this.next = this.next.bind(this);
     }
 
     previous() {
-        if (this.state.current > 0) {
-            this.setState(previousState => ({ current: previousState.current - 1 }));
-        }
+        this.current = this.current > 0 ? this.current - 1 : 0;
     }
 
     next() {
-        if (this.state.current < this.props.slides.length - 1) {
-            this.setState(previousState => ({ current: previousState.current + 1 }));
-        }
+        this.current = this.current < this.props.slides.length - 1 ? this.current + 1 : this.current;
     }
 
     render() {
-        const content = this.props.slides.length ? this.props.slides[this.state.current].content : '';
+        const content = this.props.slides.length ? this.props.slides[this.current].content : '';
         return (
             <div className="slideShow">
                 {this.props.slides.length && <Slide content={content} />}
@@ -38,3 +38,5 @@ SlideShow.propTypes = {
     slides: React.PropTypes.array.isRequired,
     onStop: React.PropTypes.func.isRequired
 };
+
+export default observer(SlideShow);
