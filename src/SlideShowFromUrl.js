@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import SlideShow from './SlideShow';
+import SlideShowFromText from './SlideShowFromText';
 
 export default class SlideShowFromUrl extends Component {
     constructor(props) {
         super(props);
-        this.state = { slides: [] };
+        this.state = { text: '' };
     }
 
     componentDidMount() {
@@ -17,18 +17,16 @@ export default class SlideShowFromUrl extends Component {
                 return response.text();
             })
             .then(text => {
-                const rawSlides = text.split('\n\n----------\n\n');
-                const slides = rawSlides.map((slide, index) => ({ id: index, content: slide }));
-                this.setState({ slides: slides });
+                this.setState({ text: text });
             })
             .catch(() => {
-                this.setState({ slides: [] });
+                this.setState({ text: '' });
             });
     }
 
     render() {
         return (
-            <SlideShow slides={this.state.slides} onStop={this.props.onStop} />
+            <SlideShowFromText text={this.state.text} onStop={this.props.onStop} />
         );
     }
 }
