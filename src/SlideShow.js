@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import showdown from 'showdown';
+import Slide from './Slide';
 import './SlideShow.css';
 
 export default class SlideShow extends Component {
     constructor(props) {
         super(props);
-        this.converter = new showdown.Converter();
         this.state = { current: 0 };
         this.previous = this.previous.bind(this);
         this.next = this.next.bind(this);
-        this.createMarkup = this.createMarkup.bind(this);
     }
 
     previous() {
@@ -24,14 +22,10 @@ export default class SlideShow extends Component {
         }
     }
 
-    createMarkup() {
-        return { __html: this.converter.makeHtml(this.props.slides[this.state.current].content) };
-    }
-
     render() {
         return (
             <div className="slideShow">
-                {this.props.slides.length && <div className="content" dangerouslySetInnerHTML={this.createMarkup()} />}
+                {this.props.slides.length && <Slide content={this.props.slides[this.state.current].content} />}
                 <div className="buttonBar">
                     <button onClick={this.previous}>Previous</button>
                     <button onClick={this.next}>Next</button>
