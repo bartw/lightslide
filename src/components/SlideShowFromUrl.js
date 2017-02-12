@@ -1,32 +1,26 @@
 import React, { Component } from 'react';
-import SlideShowFromText from './SlideShowFromText';
+import fetchMarkdown from '../services/fetchMarkdownService';
+import SlideShowFromMarkdown from './SlideShowFromMarkdown';
 
 export default class SlideShowFromUrl extends Component {
     constructor(props) {
         super(props);
-        this.state = { text: '' };
+        this.state = { markdown: '' };
     }
 
     componentDidMount() {
         if (!this.props.url || !this.props.url.length) {
-            return;
+            this.setState({ markdown: '' });
         }
 
-        fetch(this.props.url, { mode: 'cors' })
-            .then(response => {
-                return response.text();
-            })
-            .then(text => {
-                this.setState({ text: text });
-            })
-            .catch(() => {
-                this.setState({ text: '' });
-            });
+        fetchMarkdown(this.props.url).then(markdown => {
+            this.setState({ markdown: markdown })
+        });
     }
 
     render() {
         return (
-            <SlideShowFromText text={this.state.text} onStop={this.props.onStop} />
+            <SlideShowFromMarkdown markdown={this.state.markdown} onStop={this.props.onStop} />
         );
     }
 }

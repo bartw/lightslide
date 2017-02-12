@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SlideShowFromText from './SlideShowFromText';
+import SlideShowFromMarkdown from './SlideShowFromMarkdown';
 
 it('renders without crashing', () => {
     const onStop = () => { };
     const div = document.createElement('div');
-    ReactDOM.render(<SlideShowFromText text="" onStop={onStop} />, div);
+    ReactDOM.render(<SlideShowFromMarkdown markdown="" onStop={onStop} />, div);
 });

@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import showdown from 'showdown';
+import convertMarkdownToHtml from '../services/convertMarkdownService';
 import './Slide.css';
 
 export default class Slide extends Component {
-    constructor(props) {
-        super(props);
-        this.converter = new showdown.Converter();
-        this.createMarkup = this.createMarkup.bind(this);
-    }
-
-    createMarkup() {
-        return { __html: this.converter.makeHtml(this.props.content) };
-    }
-
     render() {
+        const slideHtml = { __html: convertMarkdownToHtml(this.props.content) };
         return (
-            <div className="content" dangerouslySetInnerHTML={this.createMarkup()} />
+            <div className="content" dangerouslySetInnerHTML={slideHtml} />
         );
     }
 }
 
 Slide.propTypes = {
     content: React.PropTypes.string.isRequired
-}
+};

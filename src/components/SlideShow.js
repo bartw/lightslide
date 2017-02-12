@@ -24,9 +24,10 @@ export default class SlideShow extends Component {
     }
 
     render() {
+        const content = this.props.slides.length ? this.props.slides[this.state.current].content : '';
         return (
             <div className="slideShow">
-                {this.props.slides.length && <Slide content={this.props.slides[this.state.current].content} />}
+                {this.props.slides.length && <Slide content={content} />}
                 <ButtonBar onPrevious={this.previous} onNext={this.next} onStop={this.props.onStop} />
             </div>
         );
@@ -36,4 +37,4 @@ export default class SlideShow extends Component {
 SlideShow.propTypes = {
     slides: React.PropTypes.array.isRequired,
     onStop: React.PropTypes.func.isRequired
-}
+};
