@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SlideShow from './SlideShow';
+import SlideShowFromUrl from './SlideShowFromUrl';
 import UrlForm from './UrlForm';
 import './App.css';
 
@@ -29,7 +29,7 @@ export default class App extends Component {
       <div className="app">
         {
           this.state.showSlideShow ?
-            <SlideShow url={this.state.url} onStop={this.stop} />
+            <SlideShowFromUrl url={this.state.url} onStop={this.stop} />
             : <UrlForm onChangeUrl={this.changeUrl} onStart={this.start} />
         }
       </div>
