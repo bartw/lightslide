@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slide from './Slide';
+import ButtonBar from './ButtonBar';
 import './SlideShow.css';
 
 export default class SlideShow extends Component {
@@ -26,11 +27,7 @@ export default class SlideShow extends Component {
         return (
             <div className="slideShow">
                 {this.props.slides.length && <Slide content={this.props.slides[this.state.current].content} />}
-                <div className="buttonBar">
-                    <button onClick={this.previous}>Previous</button>
-                    <button onClick={this.next}>Next</button>
-                    <button onClick={this.props.onStop}>Stop</button>
-                </div>
+                <ButtonBar onPrevious={this.previous} onNext={this.next} onStop={this.props.onStop} />
             </div>
         );
     }
