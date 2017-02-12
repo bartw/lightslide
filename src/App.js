@@ -7,16 +7,16 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = { showSlideShow: false, url: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.changeUrl = this.changeUrl.bind(this);
+    this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
   }
 
-  handleChange(event) {
+  changeUrl(event) {
     this.setState({ url: event.target.value });
   }
 
-  handleClick() {
+  start() {
     this.setState({ showSlideShow: true });
   }
 
@@ -30,7 +30,7 @@ export default class App extends Component {
         {
           this.state.showSlideShow ?
             <SlideShow url={this.state.url} onStop={this.stop} />
-            : <UrlForm onChangeUrl={this.handleChange} onStart={this.handleClick} />
+            : <UrlForm onChangeUrl={this.changeUrl} onStart={this.start} />
         }
       </div>
     );
